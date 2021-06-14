@@ -235,6 +235,8 @@ class GPickr {
                 this._focusedStop = stop;
                 let hidden = false;
 
+                console.log( this._focusedStop );
+
                 // Listen for mouse / touch movements
                 const m = on(window, ['mousemove', 'touchmove'], e => {
                     const {x, y} = simplifyEvent(e);
