@@ -1,4 +1,4 @@
-import '../scss/_main.scss';
+//import '../scss/_main.scss';
 
 import Pickr from '@simonwep/pickr';
 

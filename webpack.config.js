@@ -1,5 +1,5 @@
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
+//const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry:  './src/js/gpickr.js',
@@ -24,21 +24,21 @@ module.exports = {
                 test: /\.js$/,
                 use: 'babel-loader'
             },
-            {
-                test: /\.(scss|css)$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }
+            // {
+            //     test: /\.(scss|css)$/,
+            //     use: [
+            //         MiniCssExtractPlugin.loader,
+            //         'css-loader',
+            //         'sass-loader'
+            //     ]
+            // }
         ]
     },
 
-    plugins: [
-        new FixStyleOnlyEntriesPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'gpickr.min.css'
-        })
-    ]
+    // plugins: [
+    //     new FixStyleOnlyEntriesPlugin(),
+    //     // new MiniCssExtractPlugin({
+    //     //     filename: 'gpickr.min.css'
+    //     // })
+    // ]
 };
