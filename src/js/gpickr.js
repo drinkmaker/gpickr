@@ -219,7 +219,7 @@ class GPickr {
      */
     addStop(color, loc = 0.5, silent = false) {
         const {markers} = this._root.gradient.stops;
-        const el = utils.createElementFromString('<div class="gpcr-marker"></div>');
+        const el = utils.createElementFromString('<div title="Drag down to remove the stop point." class="gpcr-marker"></div>');
         markers.appendChild(el);
 
         this._pickr.setColor(color);
@@ -232,10 +232,15 @@ class GPickr {
                 e.preventDefault();
                 const markersbcr = markers.getBoundingClientRect();
                 this._pickr.setColor(stop.color);
-                this._focusedStop = stop;
-                let hidden = false;
 
-                console.log( this._focusedStop );
+                /** Mark focused stop by class. */
+                if ( this._focusedStop ) {
+                    this._focusedStop.el.classList.remove('active' );
+                }
+                this._focusedStop = stop;
+                this._focusedStop.el.classList.add( 'active' );
+
+                let hidden = false;
 
                 // Listen for mouse / touch movements
                 const m = on(window, ['mousemove', 'touchmove'], e => {
@@ -266,7 +271,13 @@ class GPickr {
             })
         };
 
+        /** Mark focused stop by class. */
+        if ( this._focusedStop ) {
+            this._focusedStop.el.classList.remove('active' );
+        }
         this._focusedStop = stop;
+        this._focusedStop.el.classList.add( 'active' );
+
         this._stops.push(stop);
         this._render(silent);
         return this;
