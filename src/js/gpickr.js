@@ -49,10 +49,7 @@ class GPickr {
 
     constructor(opt) {
         opt = Object.assign({
-            stops: [
-                ['#42445a', 0],
-                ['#20b6dd', 1]
-            ]
+            stops: []
         }, opt);
 
         // Build dom
@@ -76,6 +73,7 @@ class GPickr {
             inline: true,
             useAsButton: true,
             showAlways: true,
+            default: '#28a85a',
             defaultRepresentation: 'HEXA',
 
             components: {
@@ -85,12 +83,17 @@ class GPickr {
                 hue: true,
 
                 interaction: {
-                    input: true
+                    hex: true,  // Display 'input/output format as hex' button  (hexadecimal representation of the rgba value)
+                    rgba: true, // Display 'input/output format as rgba' button (red green blue and alpha)
+                    cmyk: true, // Display 'input/output format as cmyk' button (cyan mangenta yellow key )
+
+                    input: true, // Display input/output textbox which shows the selected color value.
                 }
             }
-        }).on('change', color => {
-            if (this._focusedStop) {
-                this._focusedStop.color = color.toRGBA().toString(0);
+        } ).on( 'change', ( color ) => {
+
+            if ( this._focusedStop ) {
+                this._focusedStop.color = color.toRGBA().toString( 0 );
                 this._render();
             }
         }).on('init', () => {
